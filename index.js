@@ -49,14 +49,14 @@ function renderPosts() {
 
       <img src="${post.post}" class="post-image" alt="Post by "${post.name}">
       
-      <div class="post-bottom>
+      <div class="post-bottom">
         <div class="icons">
           <img src="images/icon-heart.png" class="icon" alt="Heart icon for liking posts"
           <img src="images/icon-comment.png" class="icon" alt="Comment icon for leaving comments on posts"
           <img src="images/icon-dm.png" class="icon" alt="Direct message icon for chatting with the author of the post"
         </div>
         <p class="likes"><span class="bold">${post.likes} likes</span></p>
-        <p class="caption"><span class="bold">${post.name}</span>${post.comment}</p>
+        <p class="caption"><span class="bold">${post.name}</span> ${post.comment}</p>
       </div>
     </section>
     `;

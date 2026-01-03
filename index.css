@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Source Sans 3", sans-serif;
+  background-color: #f5f5f5;
 }
 
 .container {
@@ -13,7 +14,8 @@ body {
 
 .header {
   padding: 20px 15px;
-  border-bottom: 1px solid #c6c6c6;
+  background-color: white;
+  border-bottom: 4px solid #f5f5f5;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,9 +34,8 @@ body {
 
 /* POST STYLES */
 .post {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 15px;
+  border-bottom: 16px solid #f5f5f5;
+  background-color: white;
 }
 
 .post-header {
@@ -72,8 +73,8 @@ body {
 }
 
 /* FOOTER / INTERACTION AREA */
-.post-footer {
-  padding: 15px;
+.post-bottom {
+  padding: 15px 15px 8px 15px;
 }
 
 .icons {
