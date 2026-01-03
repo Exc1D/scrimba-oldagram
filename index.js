@@ -47,7 +47,7 @@ function renderPosts() {
         </div>
       </div>
 
-      <img src="${post.post}" class="post" alt="Post by "${post.name}">
+      <img src="${post.post}" class="post-image" alt="Post by "${post.name}">
       
       <div class="post-bottom>
         <div class="icons">

@@ -14,8 +14,89 @@ body {
 .header {
   padding: 20px 15px;
   border-bottom: 1px solid #c6c6c6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
 }
 
 .logo {
-  width: 127px;
+  width: 130px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes it a circle */
+}
+
+/* POST STYLES */
+.post {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.avatar {
+  width: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid #c6c6c6;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.username-bold,
+.bold {
+  font-weight: bold;
+}
+
+.location {
+  font-size: 12px;
+}
+
+/* Make images responsive so they fit the container */
+.post-image {
+  width: 100%;
+  display: block; /* Removes weird gap at bottom of images */
+}
+
+/* FOOTER / INTERACTION AREA */
+.post-footer {
+  padding: 15px;
+}
+
+.icons {
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 25px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: transform 0.1s; /* Smooth click effect */
+}
+
+.icon:hover {
+  opacity: 0.7;
+}
+
+.likes {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+}
+
+.caption {
+  margin: 0;
+  font-size: 14px;
 }
