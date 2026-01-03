@@ -47,7 +47,7 @@ function renderPosts() {
         </div>
       </div>
 
-      <img src="${post.post}" class="post-image" alt="Post by ${post.name}">
+      <img src="${post.post}" class="post-image" id="postImg-${i}" alt="Post by ${post.name}">
       
       <div class="post-bottom">
         <div class="icons">
@@ -65,15 +65,30 @@ function renderPosts() {
   feed.innerHTML = feedHtml;
 
   posts.forEach((post, index) => {
+    let isLiked = false;
+
     document
       .getElementById(`heart-${index}`)
-      .addEventListener("click", function () {
-        posts[index].likes++;
-        document.getElementById(
-          `likes-${index}`
-        ).innerHTML = `<span class="bold">${posts[index].likes} likes</span>`;
-        this.src = "images/icon-heart-filled.svg";
-      });
+      .addEventListener("click", addLikes);
+    document
+      .getElementById(`postImg-${index}`)
+      .addEventListener("dblclick", addLikes);
+
+    function addLikes() {
+      if (isLiked) {
+        return;
+      }
+
+      posts[index].likes++;
+      document.getElementById(
+        `likes-${index}`
+      ).innerHTML = `<span class="bold">${posts[index].likes} likes</span>`;
+
+      document.getElementById(`heart-${index}`).src =
+        "images/icon-heart-filled.svg";
+
+      isLiked = true;
+    }
   });
 }
 
