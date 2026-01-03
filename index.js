@@ -34,7 +34,7 @@ const feed = document.getElementById("feed");
 function renderPosts() {
   let feedHtml = "";
 
-  for (i = 0; i < posts.length; i++) {
+  for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
 
     feedHtml += `
@@ -47,21 +47,34 @@ function renderPosts() {
         </div>
       </div>
 
-      <img src="${post.post}" class="post-image" alt="Post by "${post.name}">
+      <img src="${post.post}" class="post-image" alt="Post by ${post.name}">
       
       <div class="post-bottom">
         <div class="icons">
-          <img src="images/icon-heart.png" class="icon" alt="Heart icon for liking posts"
-          <img src="images/icon-comment.png" class="icon" alt="Comment icon for leaving comments on posts"
-          <img src="images/icon-dm.png" class="icon" alt="Direct message icon for chatting with the author of the post"
+          <img src="images/icon-heart.png" class="icon" alt="Heart icon" id="heart-${i}">
+          <img src="images/icon-comment.png" class="icon" alt="Comment icon">
+          <img src="images/icon-dm.png" class="icon" alt="DM icon">
         </div>
-        <p class="likes"><span class="bold">${post.likes} likes</span></p>
+        <p class="likes" id="likes-${i}"><span class="bold">${post.likes} likes</span></p>
         <p class="caption"><span class="bold">${post.name}</span> ${post.comment}</p>
       </div>
     </section>
     `;
   }
+
   feed.innerHTML = feedHtml;
+
+  posts.forEach((post, index) => {
+    document
+      .getElementById(`heart-${index}`)
+      .addEventListener("click", function () {
+        posts[index].likes++;
+        document.getElementById(
+          `likes-${index}`
+        ).innerHTML = `<span class="bold">${posts[index].likes} likes</span>`;
+        this.src = "images/icon-heart-filled.svg";
+      });
+  });
 }
 
 renderPosts();
