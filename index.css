@@ -1,5 +1,21 @@
-html, body {
-    margin: 0;
-    padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans 3", sans-serif;
 }
 
+.container {
+  max-width: 375px;
+  margin: 0 auto;
+  border: 1 px solid gray;
+}
+
+.header {
+  padding: 20px 15px;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+.logo {
+  width: 127px;
+}
