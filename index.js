@@ -76,6 +76,12 @@ function renderPosts() {
 
     function addLikes() {
       if (isLiked) {
+        posts[index].likes--;
+        document.getElementById(
+          `likes-${index}`
+        ).innerHTML = `<span class="bold">${posts[index].likes} likes</span>`;
+        isLiked = false;
+        document.getElementById(`heart-${index}`).src = "images/icon-heart.png";
         return;
       }
 
