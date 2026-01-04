@@ -7,6 +7,7 @@ const posts = [
     post: "images/post-vangogh.jpg",
     comment: "just took a few mushrooms lol",
     likes: 21,
+    isLiked: false,
   },
   {
     name: "Gustave Courbet",
@@ -16,6 +17,7 @@ const posts = [
     post: "images/post-courbet.jpg",
     comment: "i'm feelin a bit stressed tbh",
     likes: 4,
+    isLiked: false,
   },
   {
     name: "Joseph Ducreux",
@@ -26,6 +28,7 @@ const posts = [
     comment:
       "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
     likes: 152,
+    isLiked: false,
   },
 ];
 
@@ -35,6 +38,9 @@ function renderPosts() {
   let feedHtml = "";
 
   for (let i = 0; i < posts.length; i++) {
+    let heartIcon = posts[i].isLiked
+      ? "images/icon-heart-filled.png"
+      : "images/icon-heart.png";
     const post = posts[i];
 
     feedHtml += `
@@ -47,13 +53,13 @@ function renderPosts() {
         </div>
       </div>
 
-      <img src="${post.post}" class="post-image" id="postImg-${i}" alt="Post by ${post.name}">
+      <img src="${post.post}" class="post-image like-btn" data-index="${i}" alt="Post by ${post.name}">
       
       <div class="post-bottom">
         <div class="icons">
-          <img src="images/icon-heart.png" class="icon" alt="Heart icon" id="heart-${i}">
-          <img src="images/icon-comment.png" class="icon" alt="Comment icon">
-          <img src="images/icon-dm.png" class="icon" alt="DM icon">
+          <button class="icon-btn"><img src="${heartIcon}" class="like-btn" data-index="${i}" alt="Heart icon"></button>
+          <button class="icon-btn"><img src="images/icon-comment.png" alt="Comment icon"></button>
+          <button class="icon-btn"><img src="images/icon-dm.png" alt="DM icon"></button>
         </div>
         <p class="likes" id="likes-${i}"><span class="bold">${post.likes} likes</span></p>
         <p class="caption"><span class="bold">${post.name}</span> ${post.comment}</p>
@@ -91,7 +97,7 @@ function renderPosts() {
       ).innerHTML = `<span class="bold">${posts[index].likes} likes</span>`;
 
       document.getElementById(`heart-${index}`).src =
-        "images/icon-heart-filled.svg";
+        "images/icon-heart-filled.png";
 
       isLiked = true;
     }
