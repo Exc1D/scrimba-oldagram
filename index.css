@@ -79,11 +79,16 @@ body {
 
 .icons {
   margin-bottom: 10px;
+  gap: 15px;
 }
 
-.icon {
+.icon-btn {
+  background-color: white;
+  border: none;
+}
+
+.icon-btn img {
   width: 25px;
-  margin-right: 15px;
   cursor: pointer;
   transition: transform 0.1s; /* Smooth click effect */
 }
