@@ -69,17 +69,21 @@ function renderPosts() {
                     <img src="${post.post}" 
                          class="post-image" 
                          alt="Post by ${post.name}"
-                         data-index="${index}"> </div>
-                
+                         data-index="${index}"> 
+                    <img src="images/icon-heart-filled.png" 
+                         class="overlay-heart"
+                         id="overlay-${index}">     
+                </div>
+                    
                 <div class="post-bottom">
                     <div class="icons">
                         <button class="icon-btn" data-like-btn="${index}" aria-label="Like post">
                             <img src="${heartIcon}" class="icon" alt="heart icon">
                         </button>
-                        <button class="icon-btn" aria-label="Comment">
+                        <button class="icon-btn" data-comment-btn aria-label="Comment">
                             <img src="images/icon-comment.png" class="icon" alt="comment icon">
                         </button>
-                        <button class="icon-btn" aria-label="Share">
+                        <button class="icon-btn" data-dm-btn aria-label="Share">
                             <img src="images/icon-dm.png" class="icon" alt="share icon">
                         </button>
                     </div>
@@ -100,7 +104,7 @@ function renderPosts() {
 function handleLike(index, isFromImage) {
   const post = posts[index];
 
-  // LOGIC: If double-clicked on image, ONLY like (don't unlike)
+  // LOGIC: If double-clicked on image, ONLY like (don't unlike just like real ig)
   if (isFromImage) {
     if (!post.isLiked) {
       post.isLiked = true;
@@ -132,20 +136,50 @@ function handleLike(index, isFromImage) {
 feedEl.addEventListener("click", function (e) {
   // Look for the closest element with the 'data-like-btn' attribute
   const likeBtn = e.target.closest("[data-like-btn]");
-
   if (likeBtn) {
     const index = likeBtn.dataset.likeBtn;
     handleLike(index, false); // false means "not from image"
+    return;
+  }
+
+  const commentBtn = e.target.closest("[data-comment-btn]");
+  if (commentBtn) {
+    alert("I'm too lazy to build the feature yet. Hehe");
+    return;
+  }
+
+  const dmBtn = e.target.closest("[data-dm-btn]");
+  if (dmBtn) {
+    alert("Yeah, I'm to lazy too build that feature too (yet).");
+    return;
   }
 });
 
 // Listener 2: Double Clicks (Post Image)
 feedEl.addEventListener("dblclick", function (e) {
-  // Check if the clicked element has the class 'post-image'
   if (e.target.classList.contains("post-image")) {
-    const index = e.target.dataset.index;
-    handleLike(index, true); // true means "is from image"
+    const { index } = e.target.dataset;
+
+    // 1. Run the data logic
+    handleLike(index, true);
+
+    // 2. Run the Animation Logic
+    triggerHeartAnimation(index);
   }
 });
+
+function triggerHeartAnimation(index) {
+  // Select the specific overlay heart for this post
+  const overlayHeart = document.getElementById(`overlay-${index}`);
+
+  // Reset animation (in case user clicks fast)
+  overlayHeart.classList.remove("animate-like");
+
+  // Force a "reflow" (trick to restart CSS animation)
+  void overlayHeart.offsetWidth;
+
+  // Add the class that contains the keyframes
+  overlayHeart.classList.add("animate-like");
+}
 
 renderPosts();
