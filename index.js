@@ -40,11 +40,11 @@ const posts = [
 // Select the main container
 const feedEl = document.getElementById("feed");
 
-// ==========================================
-//    2. THE RENDER FUNCTION
-//    Draws the HTML based on the current state
-//    of the 'posts' array.
-//    ==========================================
+//==========================================
+//  THE RENDER FUNCTION
+//  Draws the HTML based on the current state
+//  of the 'posts' array.
+//==========================================
 function renderPosts() {
   // Use .map() to transform data into HTML strings, then .join() them
   feedEl.innerHTML = posts
@@ -92,16 +92,15 @@ function renderPosts() {
     .join("");
 }
 
-/* ==========================================
-   3. LOGIC & STATE MANAGEMENT
-   Updates the data when an interaction happens.
-   ========================================== */
+//==========================================
+//  LOGIC & STATE MANAGEMENT
+//  Updates the data when an interaction happens.
+//==========================================
 
 function handleLike(index, isFromImage) {
   const post = posts[index];
 
   // LOGIC: If double-clicked on image, ONLY like (don't unlike)
-  // This mimics real Instagram behavior
   if (isFromImage) {
     if (!post.isLiked) {
       post.isLiked = true;
@@ -123,11 +122,11 @@ function handleLike(index, isFromImage) {
   renderPosts();
 }
 
-/* ==========================================
-   4. EVENT LISTENERS (Event Delegation)
-   We attach listeners to the 'feedEl' parent
-   to catch events from children.
-   ========================================== */
+//==========================================
+//  EVENT LISTENERS (Event Delegation)
+//  Attach listeners to the 'feedEl' parent
+//  to catch events from children.
+//==========================================
 
 // Listener 1: Single Clicks (Heart Button)
 feedEl.addEventListener("click", function (e) {
