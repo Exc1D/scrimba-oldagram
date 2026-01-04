@@ -66,13 +66,11 @@ body {
   font-size: 12px;
 }
 
-/* Make images responsive so they fit the container */
 .post-image {
   width: 100%;
   display: block; /* Removes weird gap at bottom of images */
 }
 
-/* FOOTER / INTERACTION AREA */
 .post-bottom {
   padding: 15px 15px 8px 15px;
 }
@@ -106,4 +104,59 @@ body {
 .caption {
   margin: 0;
   font-size: 14px;
+}
+
+/* LIKE ANIMATION SETUP */
+/* 1. The Container needs relative positioning 
+   so the heart stays inside IT, not the whole page */
+.post-image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* 2. The Floating Heart (Hidden by default) */
+.overlay-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Centered and shrunk */
+  width: 100px; /* Big size */
+  opacity: 0;
+  transition: all 0.2s;
+  pointer-events: none; /* Crucial: lets clicks pass through to the image below */
+  z-index: 10;
+  filter: drop-shadow(
+    0 0 10px rgba(254, 44, 44, 0.5)
+  ); /* Adds a shadow so it pops */
+}
+
+/* 3. The Animation Class */
+.overlay-heart.animate-like {
+  animation: like-burst 0.8s ease-in-out;
+}
+
+/* 4. The Keyframes (The movement instructions) */
+@keyframes like-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2.5); /* Pop bigger */
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1); /* Bounce back */
+  }
+  45% {
+    transform: translate(-50%, -50%) scale(2.5);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0; /* Fade away */
+    transform: translate(-50%, -50%) scale(0);
+  }
 }
